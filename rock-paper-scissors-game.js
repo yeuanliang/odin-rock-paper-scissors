@@ -55,7 +55,21 @@ function playRound(computerChoice, humanChoice){
     }
 }
 
-const humanSection = getHumanChoice()
-const computerSection = getComputerChoice()
+function playGame() {
+    let roundCount = 5
+    while(roundCount>0){
+        const humanSection = getHumanChoice()
+        const computerSection = getComputerChoice()
+        console.log(playRound(computerSection, humanSection))
+        roundCount--
+    }
+    if(humanScore>computerScore){
+        console.log(`You Win! Won ${humanScore}, Lost: ${computerScore}`)
+    }else if(humanScore<computerScore){
+        console.log(`You Lose! Won ${humanScore}, Lost: ${computerScore}`)
+    }else{
+        console.log(`Draw! Won: ${humanScore}, Lost: ${computerScore}`)
+    }
+}
 
-console.log(playRound(computerSection, humanSection))
+playGame()
