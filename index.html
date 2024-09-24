@@ -2,9 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
     <title>Rock Paper Scissors Game</title>
 </head>
 <body>
+    <div class="title"><h1>Rock Paper Scissors</h1></div>
+    <div class="result">
+        <div class="human-score">Your Score:<span id="human-score">0</span></div>
+        <div class="computer-score">Computer Score:<span id="computer-score">0</span></div>
+    </div>
+    <div class="choice">
+        <button onclick="playGame('rock')">Rock</button>
+        <button onclick="playGame('paper')">Paper</button>
+        <button onclick="playGame('scissors')">Scissors</button>
+    </div>
+    <div class="output"></div>
     <script src="rock-paper-scissors-game.js"></script>
 </body>
 </html>

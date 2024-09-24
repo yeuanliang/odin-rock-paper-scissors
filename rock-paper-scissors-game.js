@@ -55,21 +55,49 @@ function playRound(computerChoice, humanChoice){
     }
 }
 
-function playGame() {
-    let roundCount = 5
-    while(roundCount>0){
-        const humanSection = getHumanChoice()
-        const computerSection = getComputerChoice()
-        console.log(playRound(computerSection, humanSection))
-        roundCount--
-    }
-    if(humanScore>computerScore){
-        console.log(`You Win! Won ${humanScore}, Lost: ${computerScore}`)
-    }else if(humanScore<computerScore){
-        console.log(`You Lose! Won ${humanScore}, Lost: ${computerScore}`)
+function updateOutput(result) {
+    const container = document.querySelector(".output")
+    const content = document.createElement("div")
+    content.textContent = result
+    container.appendChild(content)
+}
+
+function updateScore(humanScore, computerScore) {
+    const humanScoreElement = document.querySelector("#human-score")
+    humanScoreElement.textContent=humanScore
+    const computerScoreElement = document.querySelector("#computer-score")
+    computerScoreElement.textContent=computerScore
+}
+
+function announceWinner() {
+    if(humanScore===5){
+        alert("You Win!")
     }else{
-        console.log(`Draw! Won: ${humanScore}, Lost: ${computerScore}`)
+        alert("You Lose!")
     }
 }
 
-playGame()
+function reset() {
+    const container=document.querySelector(".output")
+    while (container.firstChild){
+        container.removeChild(container.firstChild)
+    }
+    humanScore = 0
+    computerScore=0
+    drawCount=0
+    updateScore(0,0)
+}
+
+function playGame(playSelection) {
+    const humanSection = playSelection
+    const computerSection = getComputerChoice()
+
+    const result = playRound(computerSection, humanSection)
+    updateOutput(result)
+    updateScore(humanScore, computerScore)
+    if(humanScore===5||computerScore===5){
+        setTimeout(()=>announceWinner(), 200)
+        setTimeout(()=>reset(), 500)
+    }
+}
+
